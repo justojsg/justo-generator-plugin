@@ -20,7 +20,12 @@
       return { 
         desc: "Generate the Justo.js plugin scaffold.", 
         params: { 
-          type: "The plugin type: 'simple' or 'composite'" } };} }, { key: "init", value: function init() 
+          type: "The plugin type: 'simple' or 'composite'", 
+          desc: "The plugin description.", 
+          homepage: "The plugin homepage.", 
+          author: "The author name.", 
+          authorEmail: "The author email.", 
+          authorUrl: "The author URL." } };} }, { key: "init", value: function init() 
 
 
 
@@ -61,7 +66,13 @@
       this.copy("_editorconfig", ".editorconfig");
       this.copy("_gitignore", ".gitignore");
       this.copy("_jshintrc", ".jshintrc");
-      this.template("_package.json", "package.json", { name: _path2.default.basename(process.cwd()) });
+      this.template("_package.json", "package.json", { 
+        desc: answers.desc, 
+        homepage: answers.homepage, 
+        author: answers.author, 
+        authorEmail: answers.authorEmail, 
+        authorUrl: answers.authorUrl });
+
       this.copy("_travis.yml", ".travis.yml");
       this.copy("Justo.js");
       this.copy("Justo.json");

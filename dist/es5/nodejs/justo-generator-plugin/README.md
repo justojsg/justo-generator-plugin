@@ -13,6 +13,11 @@ npm install -g justo-generator-plugin
 ## Parameters
 
 - `type`. Plugin type: `simple` or `composite`.
+- `desc`. The plugin description.
+- `homepage`. The plugin homepage.
+- `author`. The author name.
+- `authorEmail`. The author email.
+- `authorUrl`. The author URL.
 
 Example:
 
