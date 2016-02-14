@@ -1,6 +1,6 @@
 {
   "name": "justo-generator-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Generator for a Justo.js plugin.",
   "homepage": "http://www.justojs.org",
   "author": {
@@ -29,7 +29,7 @@
     "url": "https://github.com/justojsg/justo-generator-plugin.git"
   },
   "engines": {
-    "node": ">= 4.0.0",
+    "node": ">= 5.0.0",
     "npm": ">= 3.0.0"
   },
   "dependencies": {

@@ -9,3 +9,18 @@ Generator for a `Justo.js` plugin.
 ```
 npm install -g justo-generator-plugin
 ```
+
+## Parameters
+
+- `type`. Plugin type: `simple` or `composite`.
+
+Example:
+
+```
+//simple
+justo -g plugin
+justo -g plugin type:simple
+
+//composite
+justo -g plugin type:composite
+```

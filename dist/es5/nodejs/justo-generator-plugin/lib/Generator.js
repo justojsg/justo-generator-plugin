@@ -10,7 +10,19 @@
 
 
   function _class(opts, responses) {_classCallCheck(this, _class);return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, 
-    opts, responses));}_createClass(_class, [{ key: "init", value: function init() 
+    opts, responses));}_createClass(_class, [{ key: "help", value: function help() 
+
+
+
+
+
+    {
+      return { 
+        desc: "Generate the Justo.js plugin scaffold.", 
+        params: { 
+          type: "The plugin type: 'simple' or 'composite'" } };} }, { key: "init", value: function init() 
+
+
 
 
 
@@ -38,12 +50,19 @@
 
 
     answers) {
+      if (answers.type === undefined || answers.type == "simple") {
+        this.copy("index.simple.js", "index.js");} else 
+      if (answers.type === "composite") {
+        this.copy("index.composite.js", "index.js");} else 
+      {
+        throw new Error("Invalid plugin type: " + answers.type + ".");}
+
+
       this.copy("_editorconfig", ".editorconfig");
       this.copy("_gitignore", ".gitignore");
       this.copy("_jshintrc", ".jshintrc");
       this.template("_package.json", "package.json", { name: _path2.default.basename(process.cwd()) });
       this.copy("_travis.yml", ".travis.yml");
-      this.copy("index.js");
       this.copy("Justo.js");
       this.copy("Justo.json");
       this.copy("README.md");
