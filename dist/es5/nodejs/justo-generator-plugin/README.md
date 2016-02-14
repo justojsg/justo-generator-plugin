@@ -18,6 +18,7 @@ npm install -g justo-generator-plugin
 - `author`. The author name.
 - `authorEmail`. The author email.
 - `authorUrl`. The author URL.
+- `npmWho`. The NPM user to publish.
 
 Example:
 

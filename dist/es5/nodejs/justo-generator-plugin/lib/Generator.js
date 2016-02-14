@@ -10,22 +10,23 @@
 
 
   function _class(opts, responses) {_classCallCheck(this, _class);return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, 
-    opts, responses));}_createClass(_class, [{ key: "help", value: function help() 
+    opts, responses));}_createClass(_class, [{ key: "init", value: function init() 
 
 
 
 
 
-    {
-      return { 
-        desc: "Generate the Justo.js plugin scaffold.", 
-        params: { 
-          type: "The plugin type: 'simple' or 'composite'", 
-          desc: "The plugin description.", 
-          homepage: "The plugin homepage.", 
-          author: "The author name.", 
-          authorEmail: "The author email.", 
-          authorUrl: "The author URL." } };} }, { key: "init", value: function init() 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,7 +78,7 @@
       this.copy("Justo.js");
       this.copy("Justo.json");
       this.copy("README.md");
-      this.copy("lib/op.js");
-      this.copy("test/unit/index.js");
-      this.copy("test/unit/lib/op.js");
-      this.mkdir("test/unit/data");} }]);return _class;}(_justoGenerator.Generator);exports.default = _class;
+      this.template("lib/op.js", {});
+      this.template("test/unit/index.js", {});
+      this.template("test/unit/lib/op.js", {});
+      this.mkdir("test/unit/data");} }, { key: "help", get: function get() {return { desc: "Generate the Justo.js plugin scaffold.", params: { type: "The plugin type: 'simple' or 'composite'", desc: "The plugin description.", homepage: "The plugin homepage.", author: "The author name.", authorEmail: "The author email.", authorUrl: "The author URL.", npmWho: "The NPM user to publish." } };} }]);return _class;}(_justoGenerator.Generator);exports.default = _class;
