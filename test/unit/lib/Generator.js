@@ -40,10 +40,12 @@ suite("Genertaor", function() {
       file(DST.path, "package.json").must.exist();
       file(DST.path, ".travis.yml").must.exist();
       file(DST.path, "index.js").must.exist();
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: \"\", name: \"\"}, require(\"./lib/op\").default);");
       file(DST.path, "Justo.js").must.exist();
       file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
       dir(DST.path, "test/unit/data").must.exist();
       file(DST.path, "test/unit/index.js").must.exist();
       file(DST.path, "test/unit/lib/op.js").must.exist();
@@ -63,6 +65,7 @@ suite("Genertaor", function() {
       file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
       dir(DST.path, "test/unit/data").must.exist();
       file(DST.path, "test/unit/index.js").must.exist();
       file(DST.path, "test/unit/lib/op.js").must.exist();
@@ -82,6 +85,7 @@ suite("Genertaor", function() {
       file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
       dir(DST.path, "test/unit/data").must.exist();
       file(DST.path, "test/unit/index.js").must.exist();
       file(DST.path, "test/unit/lib/op.js").must.exist();
