@@ -75,7 +75,7 @@
         authorUrl: answers.authorUrl });
 
       this.copy("_travis.yml", ".travis.yml");
-      this.copy("Justo.js");
+      this.template("Justo.js", { npmWho: answers.npmWho });
       this.copy("Justo.json");
       this.copy("README.md");
       this.template("lib/op.js", {});
