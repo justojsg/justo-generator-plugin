@@ -1,7 +1,10 @@
 //imports
 const path = require("path");
-const suite = require("justo").suite;
-const test = require("justo").test;
+const justo = require("justo");
+const suite = justo.suite;
+const test = justo.test;
+const init = justo.init;
+const fin = justo.fin;
 const op = require("../../../dist/es5/nodejs/${dir.name}/lib/op").default;
 
 //suite
