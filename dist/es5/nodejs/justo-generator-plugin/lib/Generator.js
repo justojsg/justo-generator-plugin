@@ -34,6 +34,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
     {
       _get(Object.getPrototypeOf(_class.prototype), "init", this).call(this);} }, { key: "fin", value: function fin() 
 
@@ -48,7 +57,18 @@
 
 
 
-    answers) {} }, { key: "generate", value: function generate(
+    answers) {
+      this.input({ name: "desc" });
+      this.input({ name: "homepage" });
+      this.input({ name: "author" });
+      this.input({ name: "authorEmail" });
+      this.input({ name: "authorHomepage" });
+      this.input({ name: "npmWho" });
+      this.list({ name: "type" });
+      if (this.confirm({ name: "git" })) this.input({ name: "gitUrl" });
+      if (this.confirm({ name: "bugs" })) {
+        this.input({ name: "bugsHomepage" });
+        this.input({ name: "bugsEmail" });}} }, { key: "generate", value: function generate(
 
 
 
@@ -67,18 +87,12 @@
       this.copy("_editorconfig", ".editorconfig");
       this.copy("_gitignore", ".gitignore");
       this.copy("_jshintrc", ".jshintrc");
-      this.template("_package.json", "package.json", { 
-        desc: answers.desc, 
-        homepage: answers.homepage, 
-        author: answers.author, 
-        authorEmail: answers.authorEmail, 
-        authorUrl: answers.authorUrl });
-
+      this.template("_package.json", "package.json", answers);
       this.copy("_travis.yml", ".travis.yml");
-      this.template("Justo.js", { npmWho: answers.npmWho });
+      this.template("Justo.js", answers);
       this.copy("Justo.json");
-      this.copy("README.md");
+      this.template("README.md", answers);
       this.template("lib/op.js", {});
-      this.template("test/unit/index.js", {});
-      this.template("test/unit/lib/op.js", {});
-      this.mkdir("test/unit/data");} }, { key: "help", get: function get() {return { desc: "Generate the Justo.js plugin scaffold.", params: { type: "The plugin type: 'simple' or 'composite'", desc: "The plugin description.", homepage: "The plugin homepage.", author: "The author name.", authorEmail: "The author email.", authorUrl: "The author URL.", npmWho: "The NPM user to publish." } };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;
+      this.template("test/unit/index.js");
+      this.template("test/unit/lib/op.js", { opName: "op" });
+      this.mkdir("test/unit/data");} }, { key: "desc", get: function get() {return "Generate the Justo.js plugin scaffold.";} }, { key: "params", get: function get() {return { type: { title: "Plugin type", choices: ["simple", "composite"] }, desc: "Plugin description", homepage: "Plugin homepage", author: "Author name", authorEmail: "Author email", authorHomepage: "Author homepage", npmWho: "NPM username", bugs: { title: "Configure bugs info", type: "Boolean" }, bugsHomepage: "Bugs homepage", bugsEmail: "Bugs email", git: { title: "Configure Git repository", type: "Boolean" }, gitUrl: "Git repository URL" };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;

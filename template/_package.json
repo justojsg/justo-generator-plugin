@@ -2,11 +2,11 @@
   "name": "{{dir.name}}",
   "version": "0.1.0",
   "description": "{{scope.desc}}",
-  "homepage": "{{scope.homepage}}",
+  "homepage": "{{http scope.homepage}}",
   "author": {
     "name": "{{scope.author}}",
     "email": "{{scope.authorEmail}}",
-    "url": "{{scope.authorUrl}}"
+    "url": "{{http scope.authorHomepage}}"
   },
   "contributors": [
     {
@@ -21,12 +21,12 @@
     "justo-plugin"
   ],
   "bugs": {
-    "url": "",
-    "email": ""
+    "url": "{{http scope.bugsHomepage}}",
+    "email": "{{scope.bugsEmail}}"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "{{scope.gitUrl}}"
   },
   "engines": {
     "node": ">= 5.0.0",
@@ -45,7 +45,7 @@
   },
   "main": "index.js",
   "files": [
-    "lib"
+    "lib/"
   ],
   "scripts": {
     "test": "justo test"

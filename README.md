@@ -9,22 +9,3 @@ Generator for a `Justo.js` plugin.
 ```
 npm install -g justo-generator-plugin
 ```
-
-## Parameters
-
-To list the parameters:
-
-```
-justo -g plugin help
-```
-
-Example:
-
-```
-//simple
-justo -g plugin
-justo -g plugin type:simple
-
-//composite
-justo -g plugin type:composite
-```

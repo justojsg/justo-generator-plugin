@@ -3,17 +3,17 @@ const path = require("path");
 const Dir = require("justo-fs").Dir;
 const file = require("justo-assert-fs").file;
 const dir = require("justo-assert-fs").dir;
-const Generator = require("../../../dist/es5/nodejs/justo-generator-plugin");
+const Generator = require("../../../dist/es5/nodejs/justo-generator-plugin").default;
 const suite = require("justo").suite;
 const test = require("justo").test;
 const init = require("justo").init;
 const fin = require("justo").fin;
 
 //suite
-suite("Genertaor", function() {
+suite("Generator", function() {
   suite("#constructor()", function() {
     test("constructor()", function() {
-      var gen = new Generator({});
+      var gen = new Generator({mute: true});
 
       gen.must.be.instanceOf(Generator);
     });
@@ -24,7 +24,7 @@ suite("Genertaor", function() {
 
     init("*", function() {
       DST = Dir.createTmpDir();
-      gen = new Generator({src: "dist/es5/nodejs/justo-generator-plugin/template", dst: DST.path}, {});
+      gen = new Generator({mute: true, src: "dist/es5/nodejs/justo-generator-plugin/template", dst: DST.path}, {});
     });
 
     fin("*", function() {
