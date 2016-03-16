@@ -9,7 +9,7 @@ const op = require("../../../dist/es5/nodejs/{{dir.name}}/lib/{{scope.opName}}")
 
 //suite
 suite("#op()", function() {
-  const DATA_DIR = "test/unit/data";
+  const DATA = "test/unit/data";
 
   test("op(config)", function() {
     op([{

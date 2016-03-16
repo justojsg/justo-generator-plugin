@@ -40,7 +40,7 @@ suite("Generator", function() {
       file(DST.path, "package.json").must.exist();
       file(DST.path, ".travis.yml").must.exist();
       file(DST.path, "index.js").must.exist();
-      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: \"\", name: \"\"}, require(\"./lib/op\").default);");
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
       file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
@@ -60,7 +60,7 @@ suite("Generator", function() {
       file(DST.path, "package.json").must.exist();
       file(DST.path, ".travis.yml").must.exist();
       file(DST.path, "index.js").must.exist();
-      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: \"\", name: \"\"}, require(\"./lib/op\").default);");
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
       file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
@@ -72,7 +72,7 @@ suite("Generator", function() {
     });
 
     test("generate(answers) - type:composite", function() {
-      gen.generate({type: "composite"});
+      gen.generate({type: "composite", opName: "someOp"});
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
@@ -84,11 +84,11 @@ suite("Generator", function() {
       file(DST.path, "Justo.js").must.exist();
       file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
-      file(DST.path, "lib/op.js").must.exist();
-      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
+      file(DST.path, "lib/someOp.js").must.exist();
+      file(DST.path, "lib/someOp.js").must.contain("export default function op(params) {");
       dir(DST.path, "test/unit/data").must.exist();
       file(DST.path, "test/unit/index.js").must.exist();
-      file(DST.path, "test/unit/lib/op.js").must.exist();
+      file(DST.path, "test/unit/lib/someOp.js").must.exist();
     });
 
     test("generate(answers) - type:unknown", function() {
