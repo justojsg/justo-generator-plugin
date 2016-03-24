@@ -13,7 +13,7 @@ catalog.workflow({name: "build", desc: "Build the package."}, function() {
     dirs: ["build/es5"]
   });
 
-  jshint("Best practices", {
+  jshint("Best practices and grammar", {
     output: true,
     src: [
       "index.js",
@@ -27,7 +27,7 @@ catalog.workflow({name: "build", desc: "Build the package."}, function() {
     preset: "es2015",
     files: [
       {src: "index.js", dst: "build/es5/"},
-      {src: "lib/", dst: "build/es5/lib/"}
+      {src: "lib/", dst: "build/es5/lib"}
     ]
   });
 
