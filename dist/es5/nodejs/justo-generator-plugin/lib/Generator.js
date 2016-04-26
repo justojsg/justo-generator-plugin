@@ -45,6 +45,9 @@
 
 
 
+
+
+
     {
       _get(Object.getPrototypeOf(_class.prototype), "init", this).call(this);} }, { key: "fin", value: function fin() 
 
@@ -53,7 +56,21 @@
 
 
     {
-      _get(Object.getPrototypeOf(_class.prototype), "fin", this).call(this);} }, { key: "prompt", value: function prompt(
+      _get(Object.getPrototypeOf(_class.prototype), "fin", this).call(this);} }, { key: "preprompt", value: function preprompt() 
+
+
+
+
+
+    {
+      var entries = this.getEntryNames(".").sort();
+
+      if (!(entries.length === 0 || 
+      entries.length == 1 && entries[0] == ".git" || 
+      entries.length == 2 && entries[0] == ".git" && entries[1] == "README.md")) 
+      {
+        return "Destination dir is not empty.";}} }, { key: "prompt", value: function prompt(
+
 
 
 
@@ -62,16 +79,30 @@
     answers) {
       this.input({ name: "desc" });
       this.input({ name: "homepage" });
-      this.input({ name: "author" });
-      this.input({ name: "authorEmail" });
-      this.input({ name: "authorHomepage" });
+      if (this.input({ name: "author" })) {
+        this.input({ name: "authorEmail" });
+        this.input({ name: "authorHomepage" });}
+
+      if (this.input("contributor")) {
+        this.input("contributorEmail");
+        this.input("contributorUrl");}
+
       this.input({ name: "npmWho" });
       if (this.list({ name: "type" }) == "composite") this.input({ name: "opName" });
       this.input({ name: "ns" });
-      if (this.confirm({ name: "git" })) this.input({ name: "gitUrl" });
-      if (this.confirm({ name: "bugs" })) {
-        this.input({ name: "bugsHomepage" });
-        this.input({ name: "bugsEmail" });}} }, { key: "generate", value: function generate(
+      if (this.input("gitUrl")) {
+        var re = /http[s]:\/\/github\.com\/([^\/]+\/[^\/]+).git/;
+        this.input({ name: "travisCi", default: "https://travis-ci.org/" + re.exec(answers.gitUrl)[1] });
+        this.input({ name: "davidDm", default: "https://david-dm.org/" + re.exec(answers.gitUrl)[1] });}
+
+      this.input({ name: "bugsHomepage" });
+      this.input({ name: "bugsEmail" });} }, { key: "pregenerate", value: function pregenerate(
+
+
+
+
+
+    answers) {} }, { key: "generate", value: function generate(
 
 
 
@@ -101,4 +132,4 @@
       this.template("README.md", answers);
       this.template("lib/op.js", answers.opName + ".js", answers);
       this.template("test/unit/lib/op.js", answers.opName + ".js", answers);
-      this.mkdir("test/unit/data");} }, { key: "desc", get: function get() {return "Generate the Justo.js plugin scaffold.";} }, { key: "params", get: function get() {return { type: { title: "Plugin type", choices: ["simple", "composite"] }, desc: "Plugin description", homepage: "Plugin homepage", author: "Author name", authorEmail: "Author email", authorHomepage: "Author homepage", npmWho: "NPM username", bugs: { title: "Configure bugs info", type: "Boolean" }, bugsHomepage: "Bugs homepage", bugsEmail: "Bugs email", git: { title: "Configure Git repository", type: "Boolean" }, gitUrl: "Git repository URL", opName: "Operation name", ns: "Plugin namespace" };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;
+      this.mkdir("test/unit/data");} }, { key: "desc", get: function get() {return "Generate the Justo.js plugin scaffold.";} }, { key: "params", get: function get() {return { type: { title: "Plugin type", choices: ["simple", "composite"] }, desc: "Plugin description", homepage: "Plugin homepage", author: "Author name", authorEmail: "Author email", authorHomepage: "Author homepage", contributor: "Contributor name", contributorEmail: "Contributor email", contributorUrl: "Contributor homepage", npmWho: "NPM username", bugsHomepage: "Bugs homepage", bugsEmail: "Bugs email", gitUrl: "Git repository URL", travisCi: "Travis CI", davidDm: "David DM", opName: "Operation name", ns: "Plugin namespace" };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;
