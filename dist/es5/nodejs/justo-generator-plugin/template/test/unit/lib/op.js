@@ -11,7 +11,7 @@ const op = require("../../../dist/es5/nodejs/{{dir.name}}/lib/{{scope.opName}}")
 suite("#op()", function() {
   const DATA = "test/unit/data";
 
-  test("op(config)", function() {
+  test("op(config)", function({{#if scope.async}}done{{/if}}) {
     op([{
 
     }]).must.be.eq(0);

@@ -18,6 +18,8 @@ catalog.workflow({name: "build", desc: "Build the package."}, function() {
     src: [
       "index.js",
       "lib/op.js",
+      "test/unit/index.js",
+      "test/unit/lib/"
     ]
   });
 

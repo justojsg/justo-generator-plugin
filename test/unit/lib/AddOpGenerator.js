@@ -31,10 +31,20 @@ suite("Generator", function() {
       DST_DIR.remove();
     });
 
-    test("generate(answers)", function() {
-      gen.generate({name: "test"});
+    test("generate(answers) - Sync op", function() {
+      gen.generate({name: "test", async: false});
       file(DST, "lib/test.js").must.exist();
+      file(DST, "lib/test.js").must.not.contain(", done");
       file(DST, "test/unit/lib/test.js").must.exist();
+      file(DST, "test/unit/lib/test.js").must.not.contain("done");
+    });
+
+    test("generate(answers) - Async op", function() {
+      gen.generate({name: "test", async: true});
+      file(DST, "lib/test.js").must.exist();
+      file(DST, "lib/test.js").must.contain(", done");
+      file(DST, "test/unit/lib/test.js").must.exist();
+      file(DST, "test/unit/lib/test.js").must.contain("done");
     });
   });
 })();

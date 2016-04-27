@@ -94,5 +94,47 @@ suite("Generator", function() {
     test("generate(answers) - type:unknown", function() {
       gen.generate.bind(gen).must.raise("Invalid plugin type: unknown.", [{type: "unknown"}]);
     });
+
+    test("generate(answers) - async op", function() {
+      gen.generate({type: "simple", async: true});
+
+      file(DST.path, ".editorconfig").must.exist();
+      file(DST.path, ".gitignore").must.exist();
+      file(DST.path, ".jshintrc").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "index.js").must.exist();
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
+      file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.json").must.exist();
+      file(DST.path, "README.md").must.exist();
+      file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params, done) {");
+      dir(DST.path, "test/unit/data").must.exist();
+      file(DST.path, "test/unit/index.js").must.exist();
+      file(DST.path, "test/unit/lib/op.js").must.exist();
+      file(DST.path, "test/unit/lib/op.js").must.contain("done");
+    });
+
+    test("generate(answers) - sync op", function() {
+      gen.generate({type: "simple", async: false});
+
+      file(DST.path, ".editorconfig").must.exist();
+      file(DST.path, ".gitignore").must.exist();
+      file(DST.path, ".jshintrc").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "index.js").must.exist();
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
+      file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.json").must.exist();
+      file(DST.path, "README.md").must.exist();
+      file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
+      dir(DST.path, "test/unit/data").must.exist();
+      file(DST.path, "test/unit/index.js").must.exist();
+      file(DST.path, "test/unit/lib/op.js").must.exist();
+      file(DST.path, "test/unit/lib/op.js").must.not.contain("done");
+    });
   });
 })();
