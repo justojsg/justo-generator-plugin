@@ -1,12 +1,12 @@
 {
   "name": "justo-generator-plugin",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Generator for a Justo.js plugin.",
   "homepage": "http://www.justojs.org",
   "author": {
     "name": "Justo Labs",
-    "email": "justojs@justolabs.com",
-    "url": "http://www.justojs.org"
+    "email": "info@justolabs.com",
+    "url": "http://justojs.org"
   },
   "contributors": [
     {
@@ -17,7 +17,9 @@
   ],
   "keywords": [
     "Justo",
+    "Justo plugin",
     "Justo.js",
+    "Justo.js plugin",
     "justo-generator"
   ],
   "bugs": {
