@@ -1,0 +1,4 @@
+  get {{scope.name}}() {
+    if (!this._{{scope.name}}) Object.defineProperty(this, "_{{scope.name}}", {value: simple({ns: NS, name: "{{scope.name}}"}, require("./lib/{{scope.name}}").default)});
+    return this._{{scope.name}};
+  },

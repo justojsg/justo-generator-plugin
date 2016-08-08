@@ -1,6 +1,7 @@
 //imports
 const path = require("path");
-const Dir = require("justo-fs").Dir;
+const fs = require("justo-fs");
+const Dir = fs.Dir;
 const file = require("justo-assert-fs").file;
 const dir = require("justo-assert-fs").dir;
 const Generator = require("../../../dist/es5/nodejs/justo-generator-plugin").default;
@@ -22,14 +23,21 @@ suite("Generator", function() {
   suite("#generate()", function() {
     var gen, DST;
 
-    init({name: "*", title: "Create tmp dir and generator"}, function() {
+    init("*", function() {
       DST = Dir.createTmpDir();
-      gen = new Generator({mute: true, src: "dist/es5/nodejs/justo-generator-plugin/template", dst: DST.path}, {});
-    });
+      gen = new Generator(
+        {
+          mute: true,
+          src: "dist/es5/nodejs/justo-generator-plugin/template",
+          dst: DST.path
+        },
+        {}
+      );
+    }).title("Create tmp dir and generator");
 
-    fin({name: "*", title: "Delete tmp dir"}, function() {
+    fin("*", function() {
       DST.remove();
-    });
+    }).title("Delete tmp dir");
 
     test("generate(answers) - type:undefined", function() {
       gen.generate({});
@@ -42,7 +50,6 @@ suite("Generator", function() {
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
-      file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
@@ -62,7 +69,6 @@ suite("Generator", function() {
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
-      file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
@@ -72,7 +78,7 @@ suite("Generator", function() {
     });
 
     test("generate(answers) - type:composite", function() {
-      gen.generate({type: "composite", opName: "someOp"});
+      gen.generate({type: "composite"});
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
@@ -82,13 +88,11 @@ suite("Generator", function() {
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = {");
       file(DST.path, "Justo.js").must.exist();
-      file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
-      file(DST.path, "lib/someOp.js").must.exist();
-      file(DST.path, "lib/someOp.js").must.contain("export default function op(params) {");
+      dir(DST.path, "lib").must.exist();
       dir(DST.path, "test/unit/data").must.exist();
       file(DST.path, "test/unit/index.js").must.exist();
-      file(DST.path, "test/unit/lib/someOp.js").must.exist();
+      dir(DST.path, "test/unit/lib").must.exist();
     });
 
     test("generate(answers) - type:unknown", function() {
@@ -106,7 +110,6 @@ suite("Generator", function() {
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
-      file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params, done) {");
@@ -127,7 +130,6 @@ suite("Generator", function() {
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
-      file(DST.path, "Justo.json").must.exist();
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
