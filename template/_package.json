@@ -39,8 +39,13 @@
     "justo": "*",
     "justo-assert": "*",
     "justo-plugin-babel": "*",
+    {{#if (eq scope.linter "ESLint")}}
+    "justo-plugin-eslint": "*",
+    {{/if}}
     "justo-plugin-fs": "*",
+    {{#if (eq scope.linter "JSHint")}}
     "justo-plugin-jshint": "*",
+    {{/if}}
     "justo-plugin-npm": "*"
   },
   "main": "index.js",

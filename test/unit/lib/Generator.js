@@ -1,5 +1,4 @@
 //imports
-const path = require("path");
 const fs = require("justo-fs");
 const Dir = fs.Dir;
 const file = require("justo-assert-fs").file;
@@ -44,12 +43,16 @@ suite("Generator", function() {
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
-      file(DST.path, ".jshintrc").must.exist();
-      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".jshintrc").must.not.exist();
+      file(DST.path, ".eslintrc").must.not.exist();
+      file(DST.path, ".eslintignore").must.not.exist();
       file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint");
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint", "lint(");
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
@@ -63,12 +66,16 @@ suite("Generator", function() {
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
-      file(DST.path, ".jshintrc").must.exist();
-      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".jshintrc").must.not.exist();
+      file(DST.path, ".eslintrc").must.not.exist();
+      file(DST.path, ".eslintignore").must.not.exist();
       file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint");
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint", "lint(");
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
@@ -82,12 +89,16 @@ suite("Generator", function() {
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
-      file(DST.path, ".jshintrc").must.exist();
-      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".jshintrc").must.not.exist();
+      file(DST.path, ".eslintrc").must.not.exist();
+      file(DST.path, ".eslintignore").must.not.exist();
       file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint");
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = {");
       file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint", "lint(");
       file(DST.path, "README.md").must.exist();
       dir(DST.path, "lib").must.exist();
       dir(DST.path, "test/unit/data").must.exist();
@@ -104,12 +115,16 @@ suite("Generator", function() {
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
-      file(DST.path, ".jshintrc").must.exist();
-      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".jshintrc").must.not.exist();
+      file(DST.path, ".eslintrc").must.not.exist();
+      file(DST.path, ".eslintignore").must.not.exist();
       file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint");
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint", "lint(");
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params, done) {");
@@ -124,12 +139,16 @@ suite("Generator", function() {
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
-      file(DST.path, ".jshintrc").must.exist();
-      file(DST.path, "package.json").must.exist();
+      file(DST.path, ".jshintrc").must.not.exist();
+      file(DST.path, ".eslintrc").must.not.exist();
+      file(DST.path, ".eslintignore").must.not.exist();
       file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint");
       file(DST.path, "index.js").must.exist();
       file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
       file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-eslint", "justo-plugin-jshint", "lint(");
       file(DST.path, "README.md").must.exist();
       file(DST.path, "lib/op.js").must.exist();
       file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
@@ -137,6 +156,56 @@ suite("Generator", function() {
       file(DST.path, "test/unit/index.js").must.exist();
       file(DST.path, "test/unit/lib/op.js").must.exist();
       file(DST.path, "test/unit/lib/op.js").must.not.contain("done");
+    });
+
+    test("generate(answers) - linter:ESLint", function() {
+      gen.generate({linter: "ESLint"});
+
+      file(DST.path, ".editorconfig").must.exist();
+      file(DST.path, ".gitignore").must.exist();
+      file(DST.path, ".jshintrc").must.not.exist();
+      file(DST.path, ".eslintrc").must.exist();
+      file(DST.path, ".eslintignore").must.exist();
+      file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.contain("justo-plugin-eslint");
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-jshint");
+      file(DST.path, "index.js").must.exist();
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
+      file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.contain("justo-plugin-eslint", "lint(");
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-jshint");
+      file(DST.path, "README.md").must.exist();
+      file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
+      dir(DST.path, "test/unit/data").must.exist();
+      file(DST.path, "test/unit/index.js").must.exist();
+      file(DST.path, "test/unit/lib/op.js").must.exist();
+    });
+
+    test("generate(answers) - linter:JSHint", function() {
+      gen.generate({linter: "JSHint"});
+
+      file(DST.path, ".editorconfig").must.exist();
+      file(DST.path, ".gitignore").must.exist();
+      file(DST.path, ".jshintrc").must.exist();
+      file(DST.path, ".eslintrc").must.not.exist();
+      file(DST.path, ".eslintignore").must.not.exist();
+      file(DST.path, ".travis.yml").must.exist();
+      file(DST.path, "package.json").must.exist();
+      file(DST.path, "package.json").text.must.contain("justo-plugin-jshint");
+      file(DST.path, "package.json").text.must.not.contain("justo-plugin-eslint");
+      file(DST.path, "index.js").must.exist();
+      file(DST.path, "index.js").text.must.contain("module.exports = simple({ns: NS,");
+      file(DST.path, "Justo.js").must.exist();
+      file(DST.path, "Justo.js").text.must.contain("justo-plugin-jshint", "lint(");
+      file(DST.path, "Justo.js").text.must.not.contain("justo-plugin-eslint");
+      file(DST.path, "README.md").must.exist();
+      file(DST.path, "lib/op.js").must.exist();
+      file(DST.path, "lib/op.js").must.contain("export default function op(params) {");
+      dir(DST.path, "test/unit/data").must.exist();
+      file(DST.path, "test/unit/index.js").must.exist();
+      file(DST.path, "test/unit/lib/op.js").must.exist();
     });
   });
 })();

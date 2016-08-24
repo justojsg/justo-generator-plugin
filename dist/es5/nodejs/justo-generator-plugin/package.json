@@ -1,6 +1,6 @@
 {
   "name": "justo-generator-plugin",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "description": "Generator for a Justo.js plugin.",
   "homepage": "http://www.justojs.org",
   "author": {
@@ -45,8 +45,8 @@
     "justo-assert-fs": "*",
     "justo-fs": "*",
     "justo-plugin-babel": "*",
+    "justo-plugin-eslint": "*",
     "justo-plugin-fs": "*",
-    "justo-plugin-jshint": "*",
     "justo-plugin-npm": "*"
   },
   "preferGlobal": true,

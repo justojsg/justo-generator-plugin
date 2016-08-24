@@ -4,7 +4,11 @@ const catalog = justo.catalog;
 const babel = require("justo-plugin-babel");
 const clean = require("justo-plugin-fs").clean;
 const copy = require("justo-plugin-fs").copy;
+{{#if (eq scope.linter "ESLint")}}
+const lint = require("justo-plugin-eslint");
+{{else if (eq scope.linter "JSHint")}}
 const jshint = require("justo-plugin-jshint");
+{{/if}}
 const publish = require("justo-plugin-npm").publish;
 
 //catalog
@@ -13,7 +17,8 @@ catalog.workflow({name: "build", desc: "Build the package."}, function() {
     dirs: ["build/es5"]
   });
 
-  jshint("Best practices and grammar", {
+  {{#if (ne scope.linter "<none>")}}
+  lint("Best practices and grammar", {
     output: true,
     src: [
       "index.js",
@@ -23,6 +28,7 @@ catalog.workflow({name: "build", desc: "Build the package."}, function() {
       "test/unit/lib/"
     ]
   });
+  {{/if}}
 
   babel("Transpile", {
     comments: false,

@@ -1,3 +1,3 @@
-"use strict";module.exports = { 
-  default: require("./lib/Generator").default, 
+"use strict";module.exports = {
+  default: require("./lib/Generator").default,
   "add op": require("./lib/AddOpGenerator").default };

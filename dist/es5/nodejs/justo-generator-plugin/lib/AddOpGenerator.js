@@ -8,8 +8,9 @@ var _justoGenerator = require("justo-generator");function _classCallCheck(instan
 
 
 
-  function _class(opts, responses) {_classCallCheck(this, _class);return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this, 
-    opts, responses));}_createClass(_class, [{ key: "prompt", value: function prompt(
+  function _class(opts, responses) {_classCallCheck(this, _class);return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this,
+    opts, responses));
+  }_createClass(_class, [{ key: "prompt", value: function prompt()
 
 
 
@@ -34,11 +35,10 @@ var _justoGenerator = require("justo-generator");function _classCallCheck(instan
 
 
 
-
-    answers) {
+    {
       this.input("name");
-      this.confirm({ name: "async", default: false });} }, { key: "generate", value: function generate(
-
+      this.confirm({ name: "async", default: false });
+    } }, { key: "generate", value: function generate(
 
 
 
@@ -47,11 +47,13 @@ var _justoGenerator = require("justo-generator");function _classCallCheck(instan
       this.template("lib/op.js", answers.name + ".js", answers);
       this.template("test/unit/lib/op.js", answers.name + ".js", { opName: answers.name, async: answers.async });
       this.append(
-      "index.js", 
-      this.templateAsString("snippets/index-op.hbs", answers), 
+      "index.js",
+      this.templateAsString("snippets/index-op.hbs", answers),
       { line: -2 });
 
       this.append(
-      "test/unit/index.js", 
-      this.templateAsString("snippets/test-unit-index-op.hbs", answers), 
-      { line: -2 });} }, { key: "desc", get: function get() {return "Generate an operation.";} }, { key: "params", get: function get() {return { name: "Operation name", async: { title: "Asynchronous operation?", type: "boolean" } };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;
+      "test/unit/index.js",
+      this.templateAsString("snippets/test-unit-index-op.hbs", answers),
+      { line: -2 });
+
+    } }, { key: "desc", get: function get() {return "Generate an operation.";} }, { key: "params", get: function get() {return { name: "Operation name", async: { title: "Asynchronous operation?", type: "boolean" } };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;
