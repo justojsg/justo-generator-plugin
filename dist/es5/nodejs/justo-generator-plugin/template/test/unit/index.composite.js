@@ -6,4 +6,5 @@ const pkg = require("../../dist/es5/nodejs/{{dir.name}}");
 
 //suite
 suite("API", function() {
+  
 })();

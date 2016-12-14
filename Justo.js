@@ -9,12 +9,11 @@ const publish = require("justo-plugin-npm").publish;
 const install = require("justo-plugin-npm").install;
 
 //catalog
-catalog.workflow({name: "build", desc: "Build the package"}, function() {
-  clean("Remove build directory", {
-    dirs: ["build/es5"]
-  });
-
-  eslint("Best practices and grammar", {
+const jslint = catalog.simple({
+  name: "jslint",
+  desc: "Parse best practices and grammar (JavaScript).",
+  task: eslint,
+  params: {
     output: true,
     src: [
       "index.js",
@@ -23,6 +22,14 @@ catalog.workflow({name: "build", desc: "Build the package"}, function() {
       "test/unit/index.js",
       "test/unit/lib/"
     ]
+  }
+});
+
+catalog.workflow({name: "build", desc: "Build the package"}, function() {
+  jslint("Best practices and grammar");
+
+  clean("Remove build directory", {
+    dirs: ["build/es5"]
   });
 
   babel("Transpile", {

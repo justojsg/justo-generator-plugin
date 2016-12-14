@@ -37,7 +37,7 @@ suite.only("Generator", function() {
     }).title("Delete tmp dir");
 
     test("generate(answers) - Sync op", function() {
-      gen.generate({name: "test", async: false});
+      gen.generate({name: "test", asyncOp: false});
       file(DST, "index.js").text.must.be.eq(file(DST, "index-updated.js").text);
       file(DST, "lib/test.js").must.exist();
       file(DST, "lib/test.js").must.not.contain(", done");
@@ -47,7 +47,7 @@ suite.only("Generator", function() {
     });
 
     test("generate(answers) - Async op", function() {
-      gen.generate({name: "test", async: true});
+      gen.generate({name: "test", asyncOp: true});
       file(DST, "index.js").text.must.be.eq(file(DST, "index-updated.js").text);
       file(DST, "lib/test.js").must.exist();
       file(DST, "lib/test.js").must.contain(", done");

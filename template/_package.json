@@ -33,7 +33,6 @@
     "npm": ">= 3.0.0"
   },
   "dependencies": {},
-  "peerDependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "*",
     "justo": "*",

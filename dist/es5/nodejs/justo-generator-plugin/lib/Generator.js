@@ -8,9 +8,17 @@ var _justoGenerator = require("justo-generator");function _classCallCheck(instan
 
 
 
-  function _class(opts, responses) {_classCallCheck(this, _class);return _possibleConstructorReturn(this, Object.getPrototypeOf(_class).call(this,
+  function _class(opts, responses) {_classCallCheck(this, _class);return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this,
     opts, responses));
   }_createClass(_class, [{ key: "preprompt", value: function preprompt()
+
+
+
+
+
+
+
+
 
 
 
@@ -70,25 +78,35 @@ var _justoGenerator = require("justo-generator");function _classCallCheck(instan
     answers) {
       this.input("desc");
       this.input("homepage");
+
       if (this.input("author")) {
         this.input("authorEmail");
         this.input("authorHomepage");
       }
+
       if (this.input("contributor")) {
         this.input("contributorEmail");
         this.input("contributorUrl");
       }
+
       this.input("npmWho");
-      if (this.list("type") == "simple") this.confirm({ name: "async", default: false });
+
+      if (this.select("type") == "simple") {
+        this.confirm("asyncOp");
+      }
+
       this.input("ns");
+
       if (this.input("gitUrl")) {
         var re = /http[s]:\/\/github\.com\/([^\/]+\/[^\/]+).git/;
         this.input({ name: "travisCi", default: "https://travis-ci.org/" + re.exec(answers.gitUrl)[1] });
         this.input({ name: "davidDm", default: "https://david-dm.org/" + re.exec(answers.gitUrl)[1] });
       }
+
       this.input("bugsHomepage");
       this.input("bugsEmail");
-      this.list("linter");
+
+      this.select("linter");
     } }, { key: "generate", value: function generate(
 
 
@@ -124,4 +142,4 @@ var _justoGenerator = require("justo-generator");function _classCallCheck(instan
       this.template("Justo.js", answers);
       this.template("README.md", answers);
       this.mkdir("test/unit/data");
-    } }, { key: "desc", get: function get() {return "Generate the Justo.js plugin scaffold.";} }, { key: "params", get: function get() {return { async: "Async operation?", author: "Author name", authorEmail: "Author email", authorHomepage: "Author homepage", bugsHomepage: "Bugs homepage", bugsEmail: "Bugs email", contributor: "Contributor name", contributorEmail: "Contributor email", contributorUrl: "Contributor homepage", davidDm: "David DM", desc: "Plugin description", gitUrl: "Git repository URL", homepage: "Plugin homepage", linter: { title: "Code linter", choices: ["<none>", "ESLint", "JSHint"], default: "ESLint" }, npmWho: "NPM username", ns: "Plugin namespace", opName: "Operation name", travisCi: "Travis CI", type: { title: "Plugin type", choices: ["simple", "composite"] } };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;
+    } }, { key: "desc", get: function get() {return "Generate the Justo.js plugin scaffold.";} }, { key: "params", get: function get() {return { asyncOp: { title: "Async operation?", type: "boolean", default: false }, author: "Author name", authorEmail: "Author email", authorHomepage: "Author homepage", bugsHomepage: "Bugs homepage", bugsEmail: "Bugs email", contributor: "Contributor name", contributorEmail: "Contributor email", contributorUrl: "Contributor homepage", davidDm: "David DM", desc: "Plugin description", gitUrl: "Git repository URL", homepage: "Plugin homepage", linter: { title: "JavaScript linter", options: ["<none>", "ESLint", "JSHint"], default: "ESLint" }, npmWho: "NPM username", ns: "Plugin namespace", opName: "Operation name", travisCi: "Travis CI", type: { title: "Plugin type", options: ["simple", "composite"], default: "simple" } };} }]);return _class;}(_justoGenerator.HandlebarsGenerator);exports.default = _class;

@@ -10,5 +10,5 @@ Generator for a `Justo.js` plugin.
 ## Install
 
 ```
-npm install -g justo-generator-plugin
+npm install -g justo-cli justo-generator-plugin
 ```

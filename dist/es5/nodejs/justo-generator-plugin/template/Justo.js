@@ -5,20 +5,18 @@ const babel = require("justo-plugin-babel");
 const clean = require("justo-plugin-fs").clean;
 const copy = require("justo-plugin-fs").copy;
 {{#if (eq scope.linter "ESLint")}}
-const lint = require("justo-plugin-eslint");
+const jslinter = require("justo-plugin-eslint");
 {{else if (eq scope.linter "JSHint")}}
-const jshint = require("justo-plugin-jshint");
+const jslinter = require("justo-plugin-jshint");
 {{/if}}
 const publish = require("justo-plugin-npm").publish;
 
 //catalog
-catalog.workflow({name: "build", desc: "Build the package."}, function() {
-  clean("Clean build directory", {
-    dirs: ["build/es5"]
-  });
-
-  {{#if (ne scope.linter "<none>")}}
-  lint("Best practices and grammar", {
+const jslint = catalog.simple({
+  name: "jslint",
+  desc: "Parse best practices and grammar (JavaScript).",
+  task: jslinter,
+  params: {
     output: true,
     src: [
       "index.js",
@@ -27,8 +25,17 @@ catalog.workflow({name: "build", desc: "Build the package."}, function() {
       "test/unit/index.js",
       "test/unit/lib/"
     ]
-  });
+  }
+});
+
+catalog.workflow({name: "build", desc: "Build the package."}, function() {
+  {{#if (ne scope.linter "<none>")}}
+  jslint("Best practices and grammar (JavaScript)");
+
   {{/if}}
+  clean("Clean build directory", {
+    dirs: ["build/es5"]
+  });
 
   babel("Transpile", {
     comments: false,

@@ -111,7 +111,7 @@ suite("Generator", function() {
     });
 
     test("generate(answers) - async op", function() {
-      gen.generate({type: "simple", async: true});
+      gen.generate({type: "simple", asyncOp: true});
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
@@ -135,7 +135,7 @@ suite("Generator", function() {
     });
 
     test("generate(answers) - sync op", function() {
-      gen.generate({type: "simple", async: false});
+      gen.generate({type: "simple", asyncOp: false});
 
       file(DST.path, ".editorconfig").must.exist();
       file(DST.path, ".gitignore").must.exist();
