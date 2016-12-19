@@ -9,7 +9,7 @@ const jslinter = require("justo-plugin-eslint");
 {{else if (eq scope.linter "JSHint")}}
 const jslinter = require("justo-plugin-jshint");
 {{/if}}
-const publish = require("justo-plugin-npm").publish;
+const npm = require("justo-plugin-npm");
 
 //catalog
 const jslint = catalog.simple({
@@ -76,11 +76,14 @@ catalog.macro({name: "test", desc: "Unit test."}, {
   ]
 });
 
-catalog.workflow({name: "publish", desc: "NPM publish."}, function() {
-  publish("Publish in NPM", {
+catalog.simple({
+  name: "publish",
+  desc: "Publish plugin in NPM.",
+  task: npm.publish,
+  params: {
     who: "{{scope.npmWho}}",
     src: "dist/es5/nodejs/{{dir.name}}/"
-  });
+  }
 });
 
-catalog.macro({name: "default", desc: "Default task."}, ["build", "test"]);
+catalog.macro({name: "default", desc: "Build and test."}, ["build", "test"]);

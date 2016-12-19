@@ -5,8 +5,7 @@ const babel = require("justo-plugin-babel");
 const copy = require("justo-plugin-fs").copy;
 const clean = require("justo-plugin-fs").clean;
 const eslint = require("justo-plugin-eslint");
-const publish = require("justo-plugin-npm").publish;
-const install = require("justo-plugin-npm").install;
+const npm = require("justo-plugin-npm");
 
 //catalog
 const jslint = catalog.simple({
@@ -68,18 +67,24 @@ catalog.macro({name: "test", desc: "Unit testing"}, {
   src: ["test/unit/index.js", "test/unit/lib/"]
 });
 
-catalog.workflow({name: "publish", desc: "NPM publish."}, function() {
-  publish("Publish in NPM", {
+catalog.simple({
+  name: "publish",
+  desc: "Publish generator in NPM.",
+  task: npm.publish,
+  params: {
     who: "justojs",
     src: "dist/es5/nodejs/justo-generator-plugin"
-  });
+  }
 });
 
-catalog.workflow({name: "install", desc: "Install the generator to test."}, function() {
-  install("Install", {
+catalog.simple({
+  name: "install",
+  desc: "Install the generator to test.",
+  task: npm.install,
+  params: {
     pkg: "dist/es5/nodejs/justo-generator-plugin/",
     global: true
-  });
+  }
 });
 
-catalog.macro({name: "default", desc: "Default task."}, ["build", "test"]);
+catalog.macro({name: "default", desc: "Build and test."}, ["build", "test"]);
